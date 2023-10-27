@@ -1,0 +1,32 @@
+class SignedDecimalToBinaryConverter:
+    def __init__(self, decimal_number, num_bits):
+        self.decimal_number = decimal_number
+        self.num_bits = num_bits
+        self.binary_number = self.to_binary()
+
+    def to_binary(self):
+        if self.decimal_number >= 0:
+            sign_bit = '0'
+        else:
+            sign_bit = '1'
+            self.decimal_number = abs(self.decimal_number)
+
+        binary_list = []
+
+      
+        for i in range(self.num_bits - 1, -1, -1):
+            bit_value = (self.decimal_number >> i) & 1
+            binary_list.append(str(bit_value))
+
+        binary_result = ''.join(binary_list)
+        return sign_bit + binary_result
+
+    def get_binary(self):
+        return self.binary_number
+
+if __name__ == '__main__':
+    decimal_number = int(input("Enter a signed decimal number: "))
+    num_bits = int(input("Enter the number of bits for the binary representation: "))
+    converter = SignedDecimalToBinaryConverter(decimal_number, num_bits)
+    binary_result = converter.get_binary()
+    print(f"Binary representation: {binary_result}")
