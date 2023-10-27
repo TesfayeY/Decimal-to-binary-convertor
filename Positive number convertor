@@ -1,0 +1,24 @@
+class DecimalToBinary:
+    def __init__(self, decimal_num):
+        self.decimal_num = decimal_num
+        self.binary_num = self.to_binary()
+
+    def to_binary(self):
+        binary_list = []
+        if self.decimal_num == 0:
+            return '0'
+        while self.decimal_num> 0:
+            remainder = self.decimal_num % 2
+            binary_list.insert(0, str(remainder))
+            self.decimal_num //= 2
+
+        return ''.join(binary_list)
+
+    def get_binary(self):
+        return self.binary_num
+
+if __name__ == '__main__':
+    decimal_num = int(input("Enter a decimal number: "))
+    converter = DecimalToBinary(decimal_num)
+    binary_result = converter.get_binary()
+    print(f"Binary representation: {binary_result}")
